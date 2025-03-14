@@ -1,0 +1,154 @@
+// _variables.scss
+$primary-color: #0097A4;
+$secondary-color: #3a4a55;
+$tertiary-color: #4e5d6a;
+$background-color: #2c3e50;
+$text-color: white;
+$font-family: "Krub", sans-serif;
+$font-size-base: 16px;
+$font-size-heading: 2.5rem;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$btn-hover-color: #007f86;
+
+// _mixins.scss
+@mixin fade-in($duration) {
+  animation: fadeIn $duration ease-out forwards;
+}
+
+@mixin button($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: darken($bg-color, 10%);
+    transform: scale(1.05);
+  }
+}
+
+// _header.scss
+header {
+  background-color: $primary-color;
+  color: $text-color;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .header-text {
+    font-size: $font-size-heading;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar-item {
+    margin: 0 15px;
+    font-size: 1.2rem;
+  }
+}
+
+// _footer.scss
+footer {
+  background-color: #333;
+  color: $text-color;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+// _buttons.scss
+.btn-primary {
+  @include button($primary-color, $text-color);
+}
+
+.btn-secondary {
+  @include button($secondary-color, $text-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: $btn-hover-color;
+}
+
+// _cards.scss
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: $tertiary-color;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+}
+
+// Media Queries y Responsividad
+@media (max-width: 576px) {
+  .card {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .header-text {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .navbar-item {
+    font-size: 1rem;
+    margin: 0 10px;
+  }
+}
+
+// style.scss
+@import 'base/variables';
+@import 'base/reset';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'components/buttons';
+@import 'components/cards';
+@import 'mixins/mixins';
+
+// Estilos generales
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  background-color: $background-color;
+  color: $text-color;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  @include fade-in(1s);
+}
+
+// Agregar más estilos según sea necesario
